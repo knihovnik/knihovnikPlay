@@ -3,9 +3,10 @@
 @main("Welcome to Play") {
 
     @message
-    @helper.form(action = routes.Application.addKniha()){
-        <input name ="jmeno">
+    @helper.form(action = routes.Application.addBook()){
+        <input name ="nazev">
         <input type ="submit">
     }
+
 
 }
