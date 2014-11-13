@@ -8,7 +8,8 @@ POST        /knihy               controllers.Application.addBook()
 GET         /knihy               controllers.Application.getBooks()
 
 GET         /mazani              controllers.Application.deleteAll()
-GET         /edit                controllers.Application.editBook()
+GET         /edit/:id            controllers.Application.editBook(id:String)
+POST        /edit/:id            controllers.Application.updateBook(id:String)
 
 
 # Map static resources from the /public folder to the /assets URL path
