@@ -17,4 +17,10 @@ public class Kniha extends Model {
 
     public String nazev;
 
+    public String autor;
+
+    public String rokVydani;
+
+    public String nakladatelstvi;
+
 }

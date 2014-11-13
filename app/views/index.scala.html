@@ -4,8 +4,29 @@
 
     @message
     @helper.form(action = routes.Application.addBook()){
-        <input name ="nazev">
-        <input type ="submit">
+        <h2><a href="/knihy">Databáze knih</a></h2><br><br>
+        <table>
+            <tr>
+                <td>Název knihy</td>
+                <td><input name ="nazev"></td>
+            </tr>
+            <tr>
+                <td>Autor</td>
+                <td><input name ="autor"></td>
+            </tr>
+            <tr>
+                <td>Rok vydání</td>
+                <td><input name ="rokVydani"></td>
+            </tr>
+            <tr>
+                <td>Nakladatelství</td>
+                <td><input name ="nakladatelstvi"></td>
+            </tr>
+            <tr>
+                <td><input type ="submit"></td>
+            </tr>
+
+        </table>
     }
 
 
