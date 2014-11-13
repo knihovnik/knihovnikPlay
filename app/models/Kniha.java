@@ -23,4 +23,12 @@ public class Kniha extends Model {
 
     public String nakladatelstvi;
 
+    /**
+     * Nalezne knihu
+     */
+    public static Finder<String,Kniha> find = new Finder<String,Kniha>(
+            String.class, Kniha.class
+    );
+
+
 }

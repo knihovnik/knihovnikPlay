@@ -1,10 +1,14 @@
 @(message: String)
 
-@main("Welcome to Play") {
+@main("Knihovnický infromační portál") {
 
-    @message
+    <h1>@message</h1>
     @helper.form(action = routes.Application.addBook()){
-        <h2><a href="/knihy">Databáze knih</a></h2><br><br>
+        <h2><a href="/knihy">[Databáze knih]</a></h2>
+
+        <br>
+
+        <h2>Přidání knihy do databáze:</h2>
         <table>
             <tr>
                 <td>Název knihy</td>
@@ -25,9 +29,10 @@
             <tr>
                 <td><input type ="submit"></td>
             </tr>
-
         </table>
-    }
 
+        <br>
+        <em><a href="/mazani">[Smazat databázi]</a></em>
+    }
 
 }
