@@ -1,12 +1,12 @@
 package controllers;
 
 import models.Kniha;
-import play.*;
 import play.data.Form;
 import play.db.ebean.Model;
 import play.mvc.*;
 
 import views.html.*;
+import views.html.Knihy.editBook;
 
 import java.util.List;
 
@@ -40,6 +40,10 @@ public class Application extends Controller {
             Kniha.find.all().get(0).delete();
         }
         return GO_HOME();
+    }
+
+    public static Result editBook(){
+        return ok(editBook.render("Vítejte v systému Knihovník 0.1"));
     }
 
    /* public static Result delete(String id) {
