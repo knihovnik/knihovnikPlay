@@ -7,6 +7,8 @@ import play.mvc.*;
 
 import views.html.*;
 import views.html.Knihy.editBook;
+import views.html.Knihy.addBook;
+import views.html.Knihy.showBooks;
 
 
 import java.util.List;
@@ -16,7 +18,10 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render("Vítejte v systému Knihovník 0.1"));
+        return ok(index.render("Vítejte v systému Knihovník"));
+    }
+    public static Result newBook(){
+        return ok(addBook.render("Nova kniha"));
     }
 
     private static Result GO_HOME(){
@@ -39,8 +44,14 @@ public class Application extends Controller {
      */
     public static Result getBooks() {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
-        return ok(toJson(knihy));
+
+
+        return ok(showBooks.render("Seznam knih",knihy));
     }
+
+
+
+
 
     /**
      * Smaze vsechny knihy z databaze.

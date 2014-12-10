@@ -1,21 +1,13 @@
-@(id: String)
+@(title: String)
 
-@main("Knihovnický infromační portál") {
+@main(title) {
+  <form action="@routes.Application.addBook()" method="post" class="basic-form">
+    <h1>Přidání knihy
 
-  <h1>Úprava knihy s id: @id</h1>
-  <em>Zatím funguje pouze pro statické id. Bude rozšířeno.</em>
-
-  @helper.form(action = routes.Application.updateBook(id)){
-    <h2><a href="/knihy/zobraz">[Databáze knih]</a></h2><h2><a href="/">[Domů]</a></h2>
-
+    </h1>
     <br>
-    <p>Tady bude formulář na úpravu knihy...</p>
-    <br>
-    <p>Upravovaná kniha:</p>
 
-
-
-    <h2>Úprava knihy v databázi:</h2>
+    <h2>Přidání knihy do databáze:</h2>
     <table>
       <tr>
         <td>Název knihy</td>
@@ -38,6 +30,7 @@
       </tr>
     </table>
 
-  }
+    <br>
+  </form>
 
 }

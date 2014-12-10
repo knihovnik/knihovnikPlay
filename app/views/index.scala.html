@@ -4,35 +4,10 @@
 
     <h1>@message</h1>
      @helper.form(action = routes.Application.addBook()){
-        <h2><a href="/knihy">[Databáze knih]</a></h2><h2><a href="/edit/1">[Uprav knihu]</a></h2>
+         <h2><a href="/knihy/pridej">Přidej knihu</a></h2><h2><a href="/knihy/zobraz">Databáze knih</a></h2><h2><a href="/edit/1">Uprav knihu</a></h2>
 
-        <br>
 
-        <h2>Přidání knihy do databáze:</h2>
-        <table>
-            <tr>
-                <td>Název knihy</td>
-                <td><input name ="nazev"></td>
-            </tr>
-            <tr>
-                <td>Autor</td>
-                <td><input name ="autor"></td>
-            </tr>
-            <tr>
-                <td>Rok vydání</td>
-                <td><input name ="rokVydani"></td>
-            </tr>
-            <tr>
-                <td>Nakladatelství</td>
-                <td><input name ="nakladatelstvi"></td>
-            </tr>
-            <tr>
-                <td><input type ="submit"></td>
-            </tr>
-        </table>
-
-        <br>
-        <em><a href="/mazani">[Smazat databázi]</a></em>
+       <!--- <em><a href="/mazani">[Smazat databázi]</a></em>-->
     }
 
 }

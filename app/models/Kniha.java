@@ -2,7 +2,9 @@ package models;
 
 import play.db.ebean.Model;
 
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 public class Kniha extends Model {
 
     @Id
+    @GeneratedValue
     public String id;
 
     public String nazev;
@@ -26,9 +29,13 @@ public class Kniha extends Model {
     /**
      * Nalezne knihu
      */
-    public static Finder<String,Kniha> find = new Finder<String,Kniha>(
+    public  static Finder<String,Kniha> find = new Finder<String,Kniha>(
             String.class, Kniha.class
     );
+
+    /*public void save(){
+        JPA.em().persist(this);
+    }*/
 
 
 }

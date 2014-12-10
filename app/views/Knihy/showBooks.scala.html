@@ -1,0 +1,19 @@
+@(title: String, books: List[Kniha])
+
+@main(title) {
+
+    @for(p <- books ) {
+        <div id="show-rent">
+            <p class="Kniha">
+                <br>
+                <span class="note">Název: </span><b>@p.nazev</b><br />
+                <span class="note">Autor: </span><b>@p.autor</b><br />
+                <span class="note">Rok vydání: </span><b>@p.rokVydani</b><br />
+                <span class="note">Nakladatelství: </span><b>@p.nakladatelstvi</b><br />
+                <br>
+            </p>
+        </div>
+    }
+
+
+}
