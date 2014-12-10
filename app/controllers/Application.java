@@ -9,6 +9,8 @@ import views.html.*;
 import views.html.Knihy.editBook;
 import views.html.Knihy.addBook;
 import views.html.Knihy.showBooks;
+import views.html.Uzivatele.login;
+import views.html.Uzivatele.falseLogin;
 
 
 
@@ -17,6 +19,9 @@ import java.util.List;
 import static play.libs.Json.toJson;
 
 public class Application extends Controller {
+
+
+    String logined = null;
 
     public static Result index() {
         return ok(index.render("Vítejte v systému Knihovník"));
@@ -31,6 +36,11 @@ public class Application extends Controller {
 
     }
 
+    public static Result loginAgain(){
+        return ok(falseLogin.render("Znovu prihlasit"));
+
+    }
+
     /**
      * Prida knihu do databaze.
      */
@@ -38,7 +48,7 @@ public class Application extends Controller {
         Form<Kniha> form = Form.form(Kniha.class).bindFromRequest();
         Kniha kniha = form.get();
         kniha.save();
-        return GO_HOME();
+        return newBook();
     }
 
     /**
@@ -62,12 +72,22 @@ public class Application extends Controller {
              adminExistuje=true;
             }
         }
-
         if(adminExistuje==false) {
             Uzivatel uzivatel = new Uzivatel("admin", "admin");
             uzivatel.save();
         }
         return ok(login.render("prihlaseni"));
+    }
+
+
+    public static Result loginUser(){
+        Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
+        Uzivatel uzivatel = form.get();
+
+        boolean zpravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.jmeno,uzivatel.heslo);
+
+        return GO_HOME();
+
     }
 
 
