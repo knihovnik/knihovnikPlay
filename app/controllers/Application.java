@@ -10,7 +10,7 @@ import views.html.Knihy.editBook;
 import views.html.Knihy.addBook;
 import views.html.Knihy.showBooks;
 import views.html.Uzivatele.login;
-import views.html.Uzivatele.falseLogin;
+
 
 
 
@@ -21,7 +21,7 @@ import static play.libs.Json.toJson;
 public class Application extends Controller {
 
 
-    String logined = null;
+    public static String logged = null;
 
     public static Result index() {
         return ok(index.render("Vítejte v systému Knihovník"));
@@ -36,10 +36,6 @@ public class Application extends Controller {
 
     }
 
-    public static Result loginAgain(){
-        return ok(falseLogin.render("Znovu prihlasit"));
-
-    }
 
     /**
      * Prida knihu do databaze.
@@ -76,7 +72,7 @@ public class Application extends Controller {
             Uzivatel uzivatel = new Uzivatel("admin", "admin");
             uzivatel.save();
         }
-        return ok(login.render("prihlaseni"));
+        return ok(login.render("Prihlasit","Přihlaš se:"));
     }
 
 
@@ -84,9 +80,15 @@ public class Application extends Controller {
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
         Uzivatel uzivatel = form.get();
 
-        boolean zpravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.jmeno,uzivatel.heslo);
-
+        boolean zpravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.getJmeno(),uzivatel.getHeslo());
+    if(zpravneHeslo){
+        logged = uzivatel.jmeno;
         return GO_HOME();
+    }
+        else{
+        return ok(login.render("Prihlasit","Spatne zadane jmeno nebo heslo, zkus to znovu:"));
+    }
+
 
     }
 

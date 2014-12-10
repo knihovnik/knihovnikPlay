@@ -1,9 +1,9 @@
-@(title: String)
+@(title: String, logged: String)
 
 @main(title) {
     <form action="@routes.Application.login()" method="post" class="basic-form">
 
-        <h2>Přihlaš se:</h2>
+        <h2> @logged</h2>
         <table>
             <tr>
                 <td>Jmeno</td>

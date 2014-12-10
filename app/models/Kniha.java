@@ -26,6 +26,46 @@ public class Kniha extends Model {
 
     public String nakladatelstvi;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNazev() {
+        return nazev;
+    }
+
+    public void setNazev(String nazev) {
+        this.nazev = nazev;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getRokVydani() {
+        return rokVydani;
+    }
+
+    public void setRokVydani(String rokVydani) {
+        this.rokVydani = rokVydani;
+    }
+
+    public String getNakladatelstvi() {
+        return nakladatelstvi;
+    }
+
+    public void setNakladatelstvi(String nakladatelstvi) {
+        this.nakladatelstvi = nakladatelstvi;
+    }
+
     /**
      * Nalezne knihu
      */

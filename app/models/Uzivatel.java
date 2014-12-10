@@ -26,6 +26,30 @@ public class Uzivatel extends Model {
         this.heslo=heslo;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getJmeno() {
+        return jmeno;
+    }
+
+    public void setJmeno(String jmeno) {
+        this.jmeno = jmeno;
+    }
+
+    public String getHeslo() {
+        return heslo;
+    }
+
+    public void setHeslo(String heslo) {
+        this.heslo = heslo;
+    }
+
     public static Finder<String,Uzivatel> find = new Finder<String,Uzivatel>(
             String.class, Uzivatel.class
     );
@@ -34,8 +58,8 @@ public class Uzivatel extends Model {
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
         boolean kontrolaPrihlaseni=false;
         for (int i=0; i< uzivatele.size(); i++){
-            if(uzivatele.get(i).jmeno.equals(jmeno)){
-                if(uzivatele.get(i).heslo.equals(heslo)) {
+            if(uzivatele.get(i).getJmeno().equals(jmeno)){
+                if(uzivatele.get(i).getHeslo().equals(heslo)) {
                     kontrolaPrihlaseni = true;
                 }
             }
