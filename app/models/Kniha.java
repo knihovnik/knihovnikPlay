@@ -16,7 +16,7 @@ public class Kniha extends Model {
 
     @Id
     @GeneratedValue
-    public String id;
+    public int id;
 
     public String nazev;
 
@@ -26,11 +26,11 @@ public class Kniha extends Model {
 
     public String nakladatelstvi;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,7 +69,7 @@ public class Kniha extends Model {
     /**
      * Nalezne knihu
      */
-    public  static Finder<String,Kniha> find = new Finder<String,Kniha>(
+    public static Finder<String,Kniha> find = new Finder<String,Kniha>(
             String.class, Kniha.class);
 
 

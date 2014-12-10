@@ -4,7 +4,7 @@
 # --- !Ups
 
 create table kniha (
-  id                        varchar(255) not null,
+  id                        integer not null,
   nazev                     varchar(255),
   autor                     varchar(255),
   rok_vydani                varchar(255),
@@ -13,7 +13,7 @@ create table kniha (
 ;
 
 create table uzivatel (
-  id                        varchar(255) not null,
+  id                        integer not null,
   jmeno                     varchar(255),
   heslo                     varchar(255),
   constraint pk_uzivatel primary key (id))

@@ -15,7 +15,7 @@ public class Uzivatel extends Model {
 
     @Id
     @GeneratedValue
-    public String id;
+    public int id;
 
     public String jmeno;
 
@@ -26,11 +26,14 @@ public class Uzivatel extends Model {
         this.heslo=heslo;
     }
 
-    public String getId() {
+    public Uzivatel() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
