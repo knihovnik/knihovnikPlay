@@ -1,0 +1,24 @@
+@(title: String)
+
+@main(title) {
+    <form action="@routes.Application.addBook()" method="post" class="basic-form">
+
+        <h2>Přihlaš se:</h2>
+        <table>
+            <tr>
+                <td>Jmeno</td>
+                <td><input name ="nazev"></td>
+            </tr>
+            <tr>
+                <td>Heslo</td>
+                <td><input name ="autor"></td>
+            </tr>
+            <tr>
+                <td><input type ="submit"></td>
+            </tr>
+        </table>
+
+        <br>
+    </form>
+
+}

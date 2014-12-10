@@ -30,12 +30,9 @@ public class Kniha extends Model {
      * Nalezne knihu
      */
     public  static Finder<String,Kniha> find = new Finder<String,Kniha>(
-            String.class, Kniha.class
-    );
+            String.class, Kniha.class);
 
-    /*public void save(){
-        JPA.em().persist(this);
-    }*/
+
 
 
 }

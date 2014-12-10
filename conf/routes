@@ -8,6 +8,8 @@ POST        /knihy               controllers.Application.addBook()
 GET         /knihy/pridej        controllers.Application.newBook()
 GET         /knihy/zobraz        controllers.Application.getBooks()
 
+GET         /uzivatel            controllers.Application.login()
+
 GET         /mazani              controllers.Application.deleteAll()
 GET         /edit/:id            controllers.Application.editBook(id:String)
 POST        /edit/:id            controllers.Application.updateBook(id:String)

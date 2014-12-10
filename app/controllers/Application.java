@@ -1,6 +1,6 @@
 package controllers;
 
-import models.Kniha;
+import models.*;
 import play.data.Form;
 import play.db.ebean.Model;
 import play.mvc.*;
@@ -9,6 +9,7 @@ import views.html.*;
 import views.html.Knihy.editBook;
 import views.html.Knihy.addBook;
 import views.html.Knihy.showBooks;
+
 
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class Application extends Controller {
     public static Result index() {
         return ok(index.render("Vítejte v systému Knihovník"));
     }
+
     public static Result newBook(){
         return ok(addBook.render("Nova kniha"));
     }
@@ -40,7 +42,7 @@ public class Application extends Controller {
     }
 
     /**
-     * Vypise knihy jako Json.
+     * Vypise knihy.
      */
     public static Result getBooks() {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
@@ -49,7 +51,24 @@ public class Application extends Controller {
         return ok(showBooks.render("Seznam knih",knihy));
     }
 
+    /**
+     *Pokud neexistuje admin tak se vytvori
+     */
+    public static Result login(){
+        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
+        boolean adminExistuje=false;
+        for (int i=0; i< uzivatele.size(); i++){
+            if(uzivatele.get(i).jmeno.equals("admin")){
+             adminExistuje=true;
+            }
+        }
 
+        if(adminExistuje==false) {
+            Uzivatel uzivatel = new Uzivatel("admin", "admin");
+            uzivatel.save();
+        }
+        return ok(login.render("prihlaseni"));
+    }
 
 
 
