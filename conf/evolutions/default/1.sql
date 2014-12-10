@@ -28,13 +28,9 @@ create sequence uzivatel_seq;
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+drop table if exists kniha cascade;
 
-drop table if exists kniha;
-
-drop table if exists uzivatel;
-
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table if exists uzivatel cascade;
 
 drop sequence if exists kniha_seq;
 
