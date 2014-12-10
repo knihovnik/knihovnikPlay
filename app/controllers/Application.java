@@ -8,6 +8,7 @@ import play.mvc.*;
 import views.html.*;
 import views.html.Knihy.editBook;
 
+
 import java.util.List;
 
 import static play.libs.Json.toJson;
@@ -20,6 +21,7 @@ public class Application extends Controller {
 
     private static Result GO_HOME(){
         return redirect(routes.Application.index());
+
     }
 
     /**
@@ -35,7 +37,7 @@ public class Application extends Controller {
     /**
      * Vypise knihy jako Json.
      */
-    public static Result getBooks(){
+    public static Result getBooks() {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
         return ok(toJson(knihy));
     }
@@ -47,6 +49,7 @@ public class Application extends Controller {
         int databaseSize = Kniha.find.all().size();
         for (int i = 1; i < databaseSize+1 ;i++){
             Kniha.find.all().get(0).delete();
+
         }
         return GO_HOME();
     }
