@@ -20,19 +20,34 @@ public class KnihaDAOImpl implements KnihaDAO {
     }
 
     @Override
+    @Transactional
     public Kniha read(int id) {
         Kniha kniha = JPA.em().find(Kniha.class, id);
         return kniha;
     }
 
     @Override
-    public boolean update() {
-        return false;
+    @Transactional
+    public boolean update(Kniha kniha) {
+        try{
+            JPA.em().persist(kniha);
+            return true;
+        }catch(Exception e){
+            System.out.println("Chyba v update.");
+            return false;
+        }
     }
 
     @Override
-    public boolean delete() {
-        return false;
+    @Transactional
+    public boolean delete(Kniha kniha) {
+        try{
+            JPA.em().remove(kniha);
+            return true;
+        }catch(Exception e){
+            System.out.println("Chyba v delete.");
+            return false;
+        }
     }
 
 }

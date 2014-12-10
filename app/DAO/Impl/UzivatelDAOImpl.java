@@ -1,7 +1,10 @@
 package DAO.Impl;
 
 import DAO.UzivatelDAO;
+
 import models.Uzivatel;
+import play.db.jpa.JPA;
+import play.db.jpa.Transactional;
 
 /**
  * Created by Kuba on 10.12.2014.
@@ -9,23 +12,42 @@ import models.Uzivatel;
 public class UzivatelDAOImpl implements UzivatelDAO {
 
     @Override
-    public int create() {
-        return 0;
+    @Transactional
+    public int create(Uzivatel uzivatel) {
+        if (uzivatel!=null) uzivatel.save();
+        else return -1;
+        return uzivatel.getId();
     }
 
     @Override
-    public Uzivatel read() {
-        return null;
+    @Transactional
+    public Uzivatel read(int id) {
+        Uzivatel kniha = JPA.em().find(Uzivatel.class, id);
+        return kniha;
     }
 
     @Override
-    public boolean update() {
-        return false;
+    @Transactional
+    public boolean update(Uzivatel uzivatel) {
+        try{
+            JPA.em().persist(uzivatel);
+            return true;
+        }catch(Exception e){
+            System.out.println("Chyba v update.");
+            return false;
+        }
     }
 
     @Override
-    public boolean delete() {
-        return false;
+    @Transactional
+    public boolean delete(Uzivatel uzivatel) {
+        try{
+            JPA.em().remove(uzivatel);
+            return true;
+        }catch(Exception e){
+            System.out.println("Chyba v delete.");
+            return false;
+        }
     }
 
 }

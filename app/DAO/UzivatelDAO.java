@@ -7,12 +7,12 @@ import models.Uzivatel;
  */
 public interface UzivatelDAO {
 
-    public int create();
+    public int create(Uzivatel uzivatel);
 
-    public Uzivatel read();
+    public Uzivatel read(int id);
 
-    public boolean update();
+    public boolean update(Uzivatel uzivatel);
 
-    public boolean delete();
+    public boolean delete(Uzivatel uzivatel);
 
 }

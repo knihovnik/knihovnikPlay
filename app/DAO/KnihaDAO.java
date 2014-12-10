@@ -12,8 +12,8 @@ public interface KnihaDAO {
 
     public Kniha read(int id);
 
-    public boolean update();
+    public boolean update(Kniha kniha);
 
-    public boolean delete();
+    public boolean delete(Kniha kniha);
 
 }
