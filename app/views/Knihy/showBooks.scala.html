@@ -1,6 +1,6 @@
-@(title: String, books: List[Kniha])
+@(title: String, books: List[Kniha], logged:String)
 
-@main(title) {
+@main(title,logged) {
 
     @for(p <- books ) {
         <div id="show-rent">

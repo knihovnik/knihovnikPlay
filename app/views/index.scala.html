@@ -1,15 +1,18 @@
 @(message: String, logged: String)
 
-@main("Knihovnický infromační portál") {
+@main("Knihovnický infromační portál",logged) {
 
     <h1>@message</h1>
     <br>
-    <h3>@logged</h3>
-     @helper.form(action = routes.Application.addBook()){
-         <h2><a href="/knihy/pridej">Přidej knihu</a></h2><h2><a href="/knihy/zobraz">Databáze knih</a></h2><h2><a href="/edit/1">Uprav knihu</a></h2>
 
+        @if(logged=="admin") {
+            <h3>Je přihlášen @logged</h3>
+            <h2><a href="/knihy/pridej">Přidej knihu</a></h2> <h2><a href="/knihy/zobraz">Databáze knih</a></h2>
+        }else{
+            <h3>@logged</h3>
+        }
 
        <!--- <em><a href="/mazani">[Smazat databázi]</a></em>-->
-    }
+
 
 }

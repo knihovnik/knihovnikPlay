@@ -1,6 +1,6 @@
-@(title: String)
+@(title: String, logged:String)
 
-@main(title) {
+@main(title,logged) {
   <form action="@routes.Application.addBook()" method="post" class="basic-form">
     <h1>Přidání knihy
 

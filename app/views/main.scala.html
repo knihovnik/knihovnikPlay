@@ -1,4 +1,5 @@
-@(title: String)(content: Html)
+@(title: String, logged: String)(content: Html)
+
 
 <!DOCTYPE html>
 
@@ -11,11 +12,17 @@
     </head>
 
     <body>
+
         <div id="wrap">
             <div id="menu">
                 <ul>
                     <a href="@routes.Application.index()" ><img src="@routes.Assets.at("images/logo.png")" width="200px" /></a>
-                    <li><h3><a href="@routes.Application.login()" >Přihlásit se</a></h3></li>
+                    @if(logged=="admin") {
+                        <li><h3><a href="@routes.Application.logOut()" >Odhlásit se</a></h3></li>
+
+                    }else{
+                        <li><h3><a href="@routes.Application.login()" >Přihlásit se </a></h3></li>
+                    }
                     <li><h3><a href="@routes.Application.getBooks()">Knihy</a></h3></li>
                     <li><h3><a href="@routes.Application.index()">Úvod</a></h3></li>
                 </ul>
@@ -28,4 +35,6 @@
 
         </div>
     </body>
+
+
 </html>

@@ -28,12 +28,12 @@ public class Application extends Controller {
         if(logged==null){
             return ok(index.render("Vítejte v systému Knihovník","Nikdo není přihlášen"));
         }else{
-            return ok(index.render("Vítejte v systému Knihovník","Je přihlášen "+logged));
+            return ok(index.render("Vítejte v systému Knihovník",logged));
         }
     }
 
     public static Result newBook(){
-        return ok(addBook.render("Nova kniha"));
+        return ok(addBook.render("Nova kniha",logged));
     }
 
     private static Result GO_HOME(){
@@ -59,25 +59,18 @@ public class Application extends Controller {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
 
 
-        return ok(showBooks.render("Seznam knih",knihy));
+        return ok(showBooks.render("Seznam knih",knihy,logged));
     }
 
     /**
      *Pokud neexistuje admin tak se vytvori
      */
     public static Result login(){
-        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
-        boolean adminExistuje=false;
-        for (int i=0; i< uzivatele.size(); i++){
-            if(uzivatele.get(i).jmeno.equals("admin")){
-             adminExistuje=true;
-            }
-        }
-        if(adminExistuje==false) {
-            Uzivatel uzivatel = new Uzivatel("admin", "admin");
-            uzivatel.save();
-        }
-        return ok(login.render("Prihlasit","Přihlaš se:"));
+        return ok(login.render("Prihlasit",logged,"Přihlaš se:"));
+    }
+    public static Result logOut(){
+        logged=null;
+        return GO_HOME();
     }
 
 
@@ -93,7 +86,7 @@ public class Application extends Controller {
         return GO_HOME();
     }
         else{
-        return ok(login.render("Prihlasit","Spatne zadane jmeno nebo heslo, zkus to znovu:"));
+        return ok(login.render("Prihlasit",logged,"Špatně zadané jméno nebo heslo, zkuz to znovu:"));
     }
 
 
@@ -118,7 +111,7 @@ public class Application extends Controller {
      * id - id zaznamu
      */
     public static Result editBook(String id){
-        return ok(editBook.render(id));
+        return ok(editBook.render(id,logged));
     }
 
     /**
@@ -129,7 +122,7 @@ public class Application extends Controller {
         Form<Kniha> computerForm = Form.form(Kniha.class).bindFromRequest();
         computerForm.get().update((Object)id);
 
-        return ok(editBook.render(id));
+        return ok(editBook.render(id,logged));
     }
 
 
