@@ -24,7 +24,12 @@ public class Application extends Controller {
     public static String logged = null;
 
     public static Result index() {
-        return ok(index.render("Vítejte v systému Knihovník"));
+
+        if(logged==null){
+            return ok(index.render("Vítejte v systému Knihovník","Nikdo není přihlášen"));
+        }else{
+            return ok(index.render("Vítejte v systému Knihovník","Je přihlášen "+logged));
+        }
     }
 
     public static Result newBook(){
@@ -79,6 +84,8 @@ public class Application extends Controller {
     public static Result loginUser(){
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
         Uzivatel uzivatel = form.get();
+
+
 
         boolean zpravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.getJmeno(),uzivatel.getHeslo());
     if(zpravneHeslo){
