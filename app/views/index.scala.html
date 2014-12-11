@@ -1,18 +1,51 @@
 @(message: String, logged: String)
 
-@main("Knihovnický infromační portál",logged) {
+    @main("Knihovnický infromační portál", logged) {
 
-    <h1>@message</h1>
-    <br>
+    <!DOCTYPE html>
 
-        @if(logged!=null) {
-            <h3>Je přihlášen @logged</h3>
-            <!---     <h2><a href="/knihy/pridej">Přidej knihu</a></h2> <h2><a href="/knihy/zobraz">Databáze knih</a></h2>-->
-        }else{
-            <h3>Nikdo není přihlášen</h3>
-        }
+        <html>
+            <body>
+                <br>
+                <h1>@message</h1>
+                <br>
 
-       <!--- <em><a href="/mazani">[Smazat databázi]</a></em>-->
+                @if(logged != null) {
+                    <h4>Jste přihlášen jako: @logged</h4>
 
+                        <!---     <h2><a href="/knihy/pridej">Přidej knihu</a></h2> <h2><a href="/knihy/zobraz">Databáze knih</a></h2>-->
+                } else {
+                    <h3>Nejste přihlášen!</h3>
+                    <p>Po přihlášení budete moci využivat služeb systému knihovník.</p>
+                    <br><br>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis congue,
+                        ante a luctus finibus, lorem quam accumsan diam, nec facilisis ex neque ac magna.
+                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                        Mauris ullamcorper dolor in bibendum pretium. Ut gravida vitae nisl sit amet maximus.
+                        Praesent id felis lectus. In dictum, ligula at interdum congue, nibh augue lobortis mi,
+                        vel rhoncus erat diam scelerisque turpis. Integer cursus porta lacinia. Integer mauris
+                        quam, malesuada quis enim et, maximus cursus tellus.
+                        <br><br>
 
-}
+                        <a href="/">
+                            <img src="/assets/images/library.png">
+                        </a>
+
+                        <br><br>
+                        Praesent in dapibus leo, id rhoncus ex. Proin vel imperdiet sem, eu dictum justo.
+                        Vestibulum quis libero nec nisi mollis condimentum et in diam. Etiam luctus nulla
+                        id ipsum eleifend, at lacinia justo interdum. Praesent bibendum, orci non elementum
+                        dictum, ex lorem varius metus, gravida vulputate turpis neque sit amet mauris. Fusce
+                        sed commodo ante. Phasellus vehicula arcu sed tortor pulvinar, sit amet dignissim nunc
+                        sodales. Quisque nisl lectus, convallis at interdum pretium, luctus sit amet erat. In
+                        ac elementum purus. Mauris aliquam viverra velit, in euismod sem vehicula sit amet.
+                        Praesent id felis lectus. In dictum, ligula at interdum congue, nibh augue lobortis mi,
+                        vel rhoncus erat diam scelerisque turpis. Integer cursus porta lacinia. Integer mauris
+                        quam, malesuada quis enim et, maximus cursus tellus.
+                    </p>
+                }
+
+                    <!--- <em><a href="/mazani">[Smazat databázi]</a></em>-->
+            </body>
+        </html>
+    }

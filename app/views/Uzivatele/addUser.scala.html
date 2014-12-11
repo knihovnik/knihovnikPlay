@@ -1,28 +1,35 @@
 @(title: String, logged:String)
 
 @main(title,logged) {
-  <form action="@routes.Application.addUser()" method="post" class="basic-form">
-    <h1>Přidání Uživatele
+  <!DOCTYPE html>
 
-    </h1>
-    <br>
+  <html>
+    <body>
+      <form action="@routes.Application.addUser()" method="post" class="basic-form">
+        <br>
+        <h1>Přidání Uživatele
 
-    <h2>Přidání uživatele do databáze:</h2>
-    <table>
-      <tr>
-        <td>Jméno</td>
-        <td><input name ="jmeno"></td>
-      </tr>
-      <tr>
-        <td>Heslo</td>
-        <td><input name ="heslo"></td>
-      </tr>
-      <tr>
-        <td><input type ="submit"></td>
-      </tr>
-    </table>
+      </h1>
+      <br>
 
-    <br>
-  </form>
+      <h2>Přidání uživatele do databáze:</h2>
+      <table>
+        <tr>
+          <td>Jméno</td>
+          <td><input name ="jmeno"></td>
+        </tr>
+        <tr>
+          <td>Heslo</td>
+          <td><input name ="heslo"></td>
+        </tr>
+        <tr>
+          <td><input type ="submit"></td>
+        </tr>
+      </table>
+
+      <br>
+      </form>
+    </body>
+  <html>
 
 }

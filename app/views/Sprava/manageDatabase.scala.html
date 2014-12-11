@@ -1,23 +1,28 @@
 @(message: String, logged: String)
 
-@main("Knihovnický infromační portál",logged) {
+    @main("Knihovnický infromační portál", logged) {
+    <!DOCTYPE html>
 
-  <h1>@message</h1>
-  <br>
+        <html>
+            <body>
+                <br>
+                <h1>@message</h1>
+                <br>
 
-  @if(logged=="admin") {
-    <h3>Je přihlášen @logged</h3>
-    <h2><a href="/knihy/pridej">Přidej knihu</a></h2>
-    <h2><a href="/knihy/zobraz">Databáze knih</a></h2>
-    <h2><a href="/mazani">Smazat databázi knih</a></h2>
-    <h2><a href="/uzivatel/pridej">Přidej uživatele</a></h2>
-    <h2><a href="/uzivatel/zobraz">Databáze uživatelů</a></h2>
+                @if(logged == "admin") {
+                    <h3>Je přihlášen @logged</h3>
+                    <br>
+                    <h2><a href="/knihy/pridej">Přidej knihu</a></h2>
+                    <h2><a href="/knihy/zobraz">Databáze knih</a></h2>
+                    <h2><a href="/mazani">Smazat databázi knih</a></h2>
+                    <br>
+                    <h2><a href="/uzivatel/pridej">Přidej uživatele</a></h2>
+                    <h2><a href="/uzivatel/zobraz">Databáze uživatelů</a></h2>
 
-  }else{
-    <h3>@logged</h3>
-  }
+                } else {
+                    <h3>@logged</h3>
+                }
+            </body>
+        </html>
 
-
-
-
-}
+    }

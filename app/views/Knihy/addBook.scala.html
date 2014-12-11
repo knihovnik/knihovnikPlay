@@ -1,36 +1,41 @@
-@(title: String, logged:String)
+@(title: String, logged: String)
 
-@main(title,logged) {
-  <form action="@routes.Application.addBook()" method="post" class="basic-form">
-    <h1>Přidání knihy
+    @main(title, logged) {
+    <!DOCTYPE html>
+        <html>
+            <body>
+            <form action="@routes.Application.addBook()" method="post" class="basic-form">
+                <h1>Přidání knihy
 
-    </h1>
-    <br>
+                </h1>
+                <br>
 
-    <h2>Přidání knihy do databáze:</h2>
-    <table>
-      <tr>
-        <td>Název knihy</td>
-        <td><input name ="nazev"></td>
-      </tr>
-      <tr>
-        <td>Autor</td>
-        <td><input name ="autor"></td>
-      </tr>
-      <tr>
-        <td>Rok vydání</td>
-        <td><input name ="rokVydani"></td>
-      </tr>
-      <tr>
-        <td>Nakladatelství</td>
-        <td><input name ="nakladatelstvi"></td>
-      </tr>
-      <tr>
-        <td><input type ="submit"></td>
-      </tr>
-    </table>
+                <h2>Přidání knihy do databáze:</h2>
+                <table>
+                    <tr>
+                        <td>Název knihy</td>
+                        <td><input name ="nazev"></td>
+                    </tr>
+                    <tr>
+                        <td>Autor</td>
+                        <td><input name ="autor"></td>
+                    </tr>
+                    <tr>
+                        <td>Rok vydání</td>
+                        <td><input name ="rokVydani"></td>
+                    </tr>
+                    <tr>
+                        <td>Nakladatelství</td>
+                        <td><input name ="nakladatelstvi"></td>
+                    </tr>
+                    <tr>
+                        <td><input type ="submit"></td>
+                    </tr>
+                </table>
 
-    <br>
-  </form>
+                <br>
+            </form>
+            </body>
+        </html>
 
-}
+    }

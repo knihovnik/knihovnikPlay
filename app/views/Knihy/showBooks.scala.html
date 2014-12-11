@@ -1,19 +1,28 @@
-@(title: String, books: List[Kniha], logged:String)
+@(title: String, books: List[Kniha], logged: String)
 
-@main(title,logged) {
+    @main(title, logged) {
+    <!DOCTYPE html>
 
-    @for(p <- books ) {
-        <div id="show-books">
-            <p class="Kniha">
-                <br>
-                <span class="note">Název: </span><b>@p.nazev</b><br />
-                <span class="note">Autor: </span><b>@p.autor</b><br />
-                <span class="note">Rok vydání: </span><b>@p.rokVydani</b><br />
-                <span class="note">Nakladatelství: </span><b>@p.nakladatelstvi</b><br />
-                <br>
-            </p>
-        </div>
+        <html>
+            <body>
+            @for(p <- books) {
+                <a href="/">
+                    <img id="imgbook", src="/assets/images/imgbook.png">
+                </a>
+                <div id="show-books">
+                    <p class="Kniha">
+                        <br>
+                        <span class="note">Název: </span> <b>@p.nazev</b> <br />
+                        <span class="note">Autor: </span> <b>@p.autor</b> <br />
+                        <span class="note">Rok vydání: </span> <b>@p.rokVydani</b> <br />
+                        <span class="note">Nakladatelství: </span> <b>@p.nakladatelstvi</b> <br />
+                        <br>
+                    </p>
+                </div>
+            }
+
+
+            </body>
+        </html>
+
     }
-
-
-}

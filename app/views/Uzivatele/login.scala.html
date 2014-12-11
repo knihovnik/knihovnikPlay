@@ -1,25 +1,32 @@
 @(title: String, logged: String, text: String)
 
-@main(title,logged) {
-    <form action="@routes.Application.loginUser()" method="post" class="basic-form">
+    @main(title, logged) {
 
-        <h2>@text</h2>
+    <!DOCTYPE html>
 
-        <table>
-            <tr>
-                <td>Jmeno</td>
-                <td><input name ="jmeno"></td>
-            </tr>
-            <tr>
-                <td>Heslo</td>
-                <td><input name ="heslo"></td>
-            </tr>
-            <tr>
-                <td><input type ="submit"></td>
-            </tr>
-        </table>
+        <html>
+            <body>
+                <form action="@routes.Application.loginUser()" method="post" class="basic-form">
+                    <br>
+                    <h2>@text</h2>
 
-        <br>
-    </form>
+                    <table>
+                        <tr>
+                            <td>Jmeno</td>
+                            <td><input name ="jmeno"></td>
+                        </tr>
+                        <tr>
+                            <td>Heslo</td>
+                            <td><input name ="heslo"></td>
+                        </tr>
+                        <tr>
+                            <td><input type ="submit"></td>
+                        </tr>
+                    </table>
 
-}
+                    <br>
+                </form>
+            </body>
+        </html>
+
+    }
