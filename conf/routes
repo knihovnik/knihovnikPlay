@@ -3,19 +3,23 @@
 # ~~~~
 
 # Home page
-GET         /                    controllers.Application.index()
-POST        /knihy               controllers.Application.addBook()
-GET         /knihy/pridej        controllers.Application.newBook()
-GET         /knihy/zobraz        controllers.Application.getBooks()
+GET         /                       controllers.Application.index()
+POST        /knihy                  controllers.Application.addBook()
+GET         /knihy/pridej           controllers.Application.newBook()
+GET         /knihy/zobraz           controllers.Application.getBooks()
+GET         /sprava                 controllers.Application.manageDatabase()
 
-POST        /uzivatel/logOut            controllers.Application.logOut()
-POST        /uzivatel            controllers.Application.loginUser()
-GET         /uzivatel            controllers.Application.login()
+GET         /uzivatel/logout        controllers.Application.logout()
+POST        /uzivatel/login         controllers.Application.loginUser()
+GET         /uzivatel/pridej        controllers.Application.newUser()
+POST        /uzivatel/pridej        controllers.Application.addUser()
+GET         /uzivatel/zobraz        controllers.Application.getUsers()
+GET         /uzivatel               controllers.Application.login()
 
-GET         /mazani              controllers.Application.deleteAll()
-GET         /edit/:id            controllers.Application.editBook(id:String)
-POST        /edit/:id            controllers.Application.updateBook(id:String)
+GET         /mazani                 controllers.Application.deleteAll()
+GET         /edit/:id               controllers.Application.editBook(id:String)
+POST        /edit/:id               controllers.Application.updateBook(id:String)
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file        controllers.Assets.at(path="/public", file)
+GET         /assets/*file           controllers.Assets.at(path="/public", file)

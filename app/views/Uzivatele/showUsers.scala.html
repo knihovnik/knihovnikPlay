@@ -1,0 +1,17 @@
+@(title: String, users: List[Uzivatel], logged:String)
+
+@main(title,logged) {
+
+  @for(p <- users ) {
+    <div id="show-users">
+      <p class="Uzivatel">
+        <br>
+        <span class="note">Jméno: </span><b>@p.jmeno</b><br />
+        <span class="note">Heslo: </span><b>@p.heslo</b><br />
+        <br>
+      </p>
+    </div>
+  }
+
+
+}

@@ -5,11 +5,11 @@
     <h1>@message</h1>
     <br>
 
-        @if(logged=="admin") {
+        @if(logged!=null) {
             <h3>Je přihlášen @logged</h3>
-            <h2><a href="/knihy/pridej">Přidej knihu</a></h2> <h2><a href="/knihy/zobraz">Databáze knih</a></h2>
+            <!---     <h2><a href="/knihy/pridej">Přidej knihu</a></h2> <h2><a href="/knihy/zobraz">Databáze knih</a></h2>-->
         }else{
-            <h3>@logged</h3>
+            <h3>Nikdo není přihlášen</h3>
         }
 
        <!--- <em><a href="/mazani">[Smazat databázi]</a></em>-->

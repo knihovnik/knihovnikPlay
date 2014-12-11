@@ -3,7 +3,6 @@ package models;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import java.util.List;
 public class Uzivatel extends Model {
 
     @Id
-    @GeneratedValue
+
     public int id;
 
     public String jmeno;
@@ -58,12 +57,15 @@ public class Uzivatel extends Model {
     );
 
     public static boolean kontrolaPrihlaseni (String jmeno, String heslo){
+
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
         boolean kontrolaPrihlaseni=false;
         for (int i=0; i< uzivatele.size(); i++){
-            if(uzivatele.get(i).getJmeno().equals(jmeno)){
-                if(uzivatele.get(i).getHeslo().equals(heslo)) {
-                    kontrolaPrihlaseni = true;
+            if(uzivatele.get(i).getJmeno()!=null) {
+                if (uzivatele.get(i).getJmeno().equals(jmeno)) {
+                    if (uzivatele.get(i).getHeslo().equals(heslo)) {
+                        kontrolaPrihlaseni = true;
+                    }
                 }
             }
         }

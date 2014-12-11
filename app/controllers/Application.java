@@ -1,15 +1,19 @@
 package controllers;
 
+import DAO.Impl.KnihaDAOImpl;
 import models.*;
 import play.data.Form;
 import play.db.ebean.Model;
 import play.mvc.*;
-
+import DAO.Impl.UzivatelDAOImpl;
 import views.html.*;
 import views.html.Knihy.editBook;
 import views.html.Knihy.addBook;
 import views.html.Knihy.showBooks;
 import views.html.Uzivatele.login;
+import views.html.Uzivatele.addUser;
+import views.html.Uzivatele.showUsers;
+import views.html.Sprava.manageDatabase;
 
 
 
@@ -25,11 +29,9 @@ public class Application extends Controller {
 
     public static Result index() {
 
-        if(logged==null){
-            return ok(index.render("Vítejte v systému Knihovník","Nikdo není přihlášen"));
-        }else{
+
             return ok(index.render("Vítejte v systému Knihovník",logged));
-        }
+
     }
 
     public static Result newBook(){
@@ -68,17 +70,43 @@ public class Application extends Controller {
     public static Result login(){
         return ok(login.render("Prihlasit",logged,"Přihlaš se:"));
     }
-    public static Result logOut(){
+
+    public static Result logout(){
         logged=null;
-        return GO_HOME();
+        return ok(login.render("Prihlasit", logged, "Přihlaš se:"));
     }
 
+    public static Result manageDatabase(){
+        return ok(manageDatabase.render("Správa databáze",logged));
+    }
+
+    public static Result newUser(){
+        return ok(addUser.render("Novy uzivatel",logged));
+    }
+
+    public static Result addUser(){
+
+
+        Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
+        Uzivatel uzivatel = form.get();
+        UzivatelDAOImpl dao = new UzivatelDAOImpl();
+
+        dao.create(uzivatel);
+        return newUser();
+
+
+    }
+    public static Result getUsers(){
+        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
+
+
+        return ok(showUsers.render("Seznam uživatelů",uzivatele,logged));
+
+    }
 
     public static Result loginUser(){
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
         Uzivatel uzivatel = form.get();
-
-
 
         boolean zpravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.getJmeno(),uzivatel.getHeslo());
     if(zpravneHeslo){
