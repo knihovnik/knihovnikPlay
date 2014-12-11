@@ -22,7 +22,7 @@ public class Kniha extends Model {
 
     public String autor;
 
-    public String rokVydani;
+    public String rok_vydani;
 
     public String nakladatelstvi;
 
@@ -51,11 +51,11 @@ public class Kniha extends Model {
     }
 
     public String getRokVydani() {
-        return rokVydani;
+        return rok_vydani;
     }
 
-    public void setRokVydani(String rokVydani) {
-        this.rokVydani = rokVydani;
+    public void setRokVydani(String rok_vydani) {
+        this.rok_vydani = rok_vydani;
     }
 
     public String getNakladatelstvi() {

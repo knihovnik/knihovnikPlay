@@ -34,6 +34,9 @@ a:hover {
     text-decoration: underline;
 }
 
+.basic-form table{
+    text-align: left;
+}
 
 p {
     font-family: Tahoma, Sans-Serif;
