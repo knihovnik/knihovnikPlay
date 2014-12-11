@@ -1,22 +1,19 @@
-@(id: String, logged: String)
+@(id: String, books: List[Kniha], logged: String)
 
     @main("Knihovnický infromační portál", logged) {
+
+    @if(logged == "admin"){
     <!DOCTYPE html>
 
         <html>
             <body>
-                <h1>Úprava knihy s id: @id</h1>
-                <em>Zatím funguje pouze pro statické id. Bude rozšířeno.</em>
-
+                @if( id == "1"){
+                    <h1>Pro vybraní knihy klikni na její ikonu</h1>
+                }else{
+                        <h1>Úprava knihy s názvem: @id</h1>
+                    }
                 @helper.form(action = routes.Application.updateBook(id)) {
-                    <h2><a href="/knihy/zobraz">[Databáze knih]</a></h2> <h2><a href="/">[Domů]</a></h2>
-
                     <br>
-                    <p>Tady bude formulář na úpravu knihy...</p>
-                    <br>
-                    <p>Upravovaná kniha:</p>
-
-
 
                     <h2>Úprava knihy v databázi:</h2>
                     <table>
@@ -42,7 +39,26 @@
                     </table>
 
                 }
+                @for(p <- books) {
+                    <a href="/edit/@p.getNazev">
+                        <img id="imgbook", src="/assets/images/imgbook.png">
+                    </a>
+                    <div id="show-books">
+                        <p class="Kniha">
+                            <br>
+                            <span class="note">Název: </span> <b>@p.getNazev</b> <br />
+                            <span class="note">Autor: </span> <b>@p.getAutor</b> <br />
+                            <span class="note">Rok vydání: </span> <b>@p.getRokVydani</b> <br />
+                            <span class="note">Nakladatelství: </span> <b>@p.getNakladatelstvi</b> <br />
+                            <br>
+                        </p>
+                    </div>
+                }
                 <!DOCTYPE html>
+            }else {
+        <h1>Nemáš oprávnění pro úpravu knih</h1>
+                }
+
 
 
             </body>

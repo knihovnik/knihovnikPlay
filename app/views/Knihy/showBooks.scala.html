@@ -6,16 +6,16 @@
         <html>
             <body>
             @for(p <- books) {
-                <a href="/">
+                <a>
                     <img id="imgbook", src="/assets/images/imgbook.png">
                 </a>
                 <div id="show-books">
                     <p class="Kniha">
                         <br>
-                        <span class="note">Název: </span> <b>@p.nazev</b> <br />
-                        <span class="note">Autor: </span> <b>@p.autor</b> <br />
-                        <span class="note">Rok vydání: </span> <b>@p.rok_vydani</b> <br />
-                        <span class="note">Nakladatelství: </span> <b>@p.nakladatelstvi</b> <br />
+                        <span class="note">Název: </span> <b>@p.getNazev</b> <br />
+                        <span class="note">Autor: </span> <b>@p.getAutor</b> <br />
+                        <span class="note">Rok vydání: </span> <b>@p.getRokVydani</b> <br />
+                        <span class="note">Nakladatelství: </span> <b>@p.getNakladatelstvi</b> <br />
                         <br>
                     </p>
                 </div>

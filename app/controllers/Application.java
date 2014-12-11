@@ -29,9 +29,9 @@ public class Application extends Controller {
 
     public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged));}
 
-    public static Result editBook(String id) {return ok(editBook.render(id, logged));}
-
     private static Result GO_HOME() {return redirect(routes.Application.index());}
+
+    public static Result editBook(String id) {List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();return ok(editBook.render(id,knihy, logged));}
 
     /**
      * Prida knihu do databaze.
@@ -39,7 +39,8 @@ public class Application extends Controller {
     public static Result addBook() {
         Form<Kniha> form = Form.form(Kniha.class).bindFromRequest();
         Kniha kniha = form.get();
-        kniha.save();
+        KnihaDAOImpl dao = new KnihaDAOImpl();
+        dao.create(kniha);
         return newBook();
     }
 
@@ -114,16 +115,25 @@ public class Application extends Controller {
         return GO_HOME();
     }
 
+
     /**
      * Upravi zaznam v databazi.
      *
-     * @id - identifikacni kod, primarni klic v databazi
+     * @name - jmeno knihy
      */
-    public static Result updateBook(String id) {
+    public static Result updateBook(String name) {
+        List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
         Form<Kniha> computerForm = Form.form(Kniha.class).bindFromRequest();
+
+        int id=0;
+        for(int i = 0; i < knihy.size();i++){
+            if(knihy.get(i).getNazev().equals(name)){
+                id=knihy.get(i).getId();
+            }
+        }
         computerForm.get().update((Object) id);
 
-        return ok(editBook.render(id, logged));
+        return ok(editBook.render(name,knihy ,logged));
     }
 
 }

@@ -1,6 +1,7 @@
 @(message: String, logged: String)
 
     @main("Knihovnický infromační portál", logged) {
+    @if(logged == "admin"){
     <!DOCTYPE html>
 
         <html>
@@ -13,6 +14,7 @@
                     <h3>Je přihlášen @logged</h3>
                     <br>
                     <h2><a href="/knihy/pridej">Přidej knihu</a></h2>
+                    <h2><a href="/edit/1">Uprav knihu</a></h2>
                     <h2><a href="/knihy/zobraz">Databáze knih</a></h2>
                     <h2><a href="/mazani">Smazat databázi knih</a></h2>
                     <br>
@@ -24,5 +26,8 @@
                 }
             </body>
         </html>
+    }else {
+        <h1>Nemáš oprávnění pro správu systému</h1>
+    }
 
     }
