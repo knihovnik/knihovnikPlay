@@ -92,8 +92,10 @@ public class Application extends Controller {
      * Prihlaseni uzivatele do systemu.
      */
     public static Result loginUser() {
+        Uzivatel uzivatel=null;
+        uzivatel.vytvorAdmin();
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
-        Uzivatel uzivatel = form.get();
+        uzivatel = form.get();
 
         boolean spravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.getJmeno(), uzivatel.getHeslo());
         if (spravneHeslo) {
