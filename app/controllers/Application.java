@@ -23,11 +23,11 @@ public class Application extends Controller {
 
     public static Result index() {return ok(index.render("Vítejte v systému Knihovník", logged));}
 
-    public static Result newBook() {return ok(addBook.render("Nova kniha", logged));}
+    public static Result newBook() {return ok(addBook.render("Nova kniha", logged, null));}
 
     public static Result manageDatabase() {return ok(manageDatabase.render("Správa databáze", logged));}
 
-    public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged,"jo"));}
+    public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged,null));}
 
     private static Result GO_HOME() {return redirect(routes.Application.index());}
 
@@ -39,9 +39,16 @@ public class Application extends Controller {
     public static Result addBook() {
         Form<Kniha> form = Form.form(Kniha.class).bindFromRequest();
         Kniha kniha = form.get();
-        KnihaDAOImpl dao = new KnihaDAOImpl();
-        dao.create(kniha);
-        return newBook();
+
+        if(kontrolaPridaniKnihy(kniha)) {
+            KnihaDAOImpl dao = new KnihaDAOImpl();
+            dao.create(kniha);
+            return newBook();
+        }
+        else{
+            return ok(addBook.render("Nova kniha", logged, "Všechna pole musí být vyplněná"));
+        }
+
     }
 
     /**
@@ -74,9 +81,15 @@ public class Application extends Controller {
 
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
         Uzivatel uzivatel = form.get();
-        UzivatelDAOImpl dao = new UzivatelDAOImpl();
-        dao.create(uzivatel);
-        return newUser();
+
+        if(kontrolaPridaniUzivatele(uzivatel.getJmeno(),uzivatel.getHeslo())) {
+            UzivatelDAOImpl dao = new UzivatelDAOImpl();
+            dao.create(uzivatel);
+            return newUser();
+        }else{
+            return ok(addUser.render("Novy uzivatel", logged,"Jméno je prázdné, nebo již existuje"));
+        }
+
     }
 
     /**
@@ -118,10 +131,10 @@ public class Application extends Controller {
     }
 
 
+
     /**
      * Upravi zaznam v databazi.
-     *
-     * @name - jmeno knihy
+     * @param name jmeno knihy
      */
     public static Result updateBook(String name) {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
@@ -137,9 +150,11 @@ public class Application extends Controller {
 
         return ok(editBook.render(name,knihy ,logged));
     }
-
     /**
      * Kontrola jmena a hesla pri prihlaseni
+     * @param jmeno jmeno prihlasovaneho uzivatele
+     * @param heslo heslo prihlasovaneho uzivatele
+     * @return pokud je jmeno a heslo zadano spravne, vraci se true. Jinak false.
      */
     public static boolean kontrolaPrihlaseni (String jmeno, String heslo){
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
@@ -167,6 +182,42 @@ public class Application extends Controller {
             Uzivatel admin = new Uzivatel("admin","admin");
             dao.create(admin);
         }
+    }
+
+    /**
+     * Kontrola jmena a hesla pri pridavani uzivatele
+     * @param jmeno jmeno pridavaneho uzivatele
+     * @param heslo heslo pridavaneho uzivatele
+     * @return true, kdyz je jmeno a heslo v poradu, jinak false.
+     */
+    public static boolean kontrolaPridaniUzivatele(String jmeno, String heslo){
+        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
+
+        if(jmeno.equalsIgnoreCase("")){return false;}
+        if(heslo.equalsIgnoreCase("")){return false;}
+        for(int i=0; i< uzivatele.size();i++){
+            if(uzivatele.get(i).getJmeno().equalsIgnoreCase(jmeno)){
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    public static boolean kontrolaPridaniKnihy(Kniha kniha){
+        if(kniha.getAutor().equalsIgnoreCase("")){
+            return false;
+        }
+        if(kniha.getNakladatelstvi().equalsIgnoreCase("")){
+            return false;
+        }
+        if(kniha.getNazev().equalsIgnoreCase("")){
+            return false;
+        }
+        if(kniha.getRokVydani().equalsIgnoreCase("")){
+            return false;
+        }
+        return true;
     }
 
 }

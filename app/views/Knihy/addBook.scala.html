@@ -1,10 +1,13 @@
-@(title: String, logged: String)
+@(title: String, logged: String, message: String)
 
     @main(title, logged) {
     @if(logged == "admin"){
     <!DOCTYPE html>
         <html>
             <body>
+                @if(message!=null){
+                    <h3>@message</h3>
+                }
             <form action="@routes.Application.addBook()" method="post" class="basic-form">
                 <h1>Přidání knihy
 
