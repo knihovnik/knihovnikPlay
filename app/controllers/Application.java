@@ -205,16 +205,8 @@ public class Application extends Controller {
     }
 
     public static boolean kontrolaPridaniKnihy(Kniha kniha){
-        if(kniha.getAutor().equalsIgnoreCase("")){
-            return false;
-        }
-        if(kniha.getNakladatelstvi().equalsIgnoreCase("")){
-            return false;
-        }
-        if(kniha.getNazev().equalsIgnoreCase("")){
-            return false;
-        }
-        if(kniha.getRokVydani().equalsIgnoreCase("")){
+        if(kniha.getAutor().equalsIgnoreCase("") || kniha.getNakladatelstvi().equalsIgnoreCase("") || kniha.getNazev().equalsIgnoreCase("")
+                || kniha.getRokVydani().equalsIgnoreCase("")){
             return false;
         }
         return true;
