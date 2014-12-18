@@ -1,11 +1,9 @@
 package models;
 
-import DAO.Impl.UzivatelDAOImpl;
 import play.db.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.List;
 
 /**
  * Created by jaraskala on 10.12.14.
@@ -53,42 +51,9 @@ public class Uzivatel extends Model {
         this.heslo = heslo;
     }
 
-    /**
-     * Nalezne uzivatele
-     */
-    public static Finder<String,Uzivatel> find = new Finder<String,Uzivatel>(
-            String.class, Uzivatel.class
-    );
 
-    /**
-     * Kontrola jmena a hesla pri prihlaseni
-     */
-    public static boolean kontrolaPrihlaseni (String jmeno, String heslo){
-        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
-        boolean kontrolaPrihlaseni=false;
 
-        for (int i=0; i< uzivatele.size(); i++){
-            if(uzivatele.get(i).getJmeno()!=null) {
-                if (uzivatele.get(i).getJmeno().equals(jmeno)) {
-                    if (uzivatele.get(i).getHeslo().equals(heslo)) {
-                        kontrolaPrihlaseni = true;
-                    }
-                }
-            }
-        }
-        return kontrolaPrihlaseni;
 
-    }
 
-    /**
-     * Pokud je databaze uzivatelu prazdna, vytvori se uzivatel admin
-     */
-    public static void vytvorAdmin(){
-        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
-        UzivatelDAOImpl dao = new UzivatelDAOImpl();
-        if(uzivatele.size()==0){
-            Uzivatel admin = new Uzivatel("admin","admin");
-            dao.create(admin);
-        }
-    }
+
 }

@@ -27,7 +27,7 @@ public class Application extends Controller {
 
     public static Result manageDatabase() {return ok(manageDatabase.render("Správa databáze", logged));}
 
-    public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged));}
+    public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged,"jo"));}
 
     private static Result GO_HOME() {return redirect(routes.Application.index());}
 
@@ -93,11 +93,11 @@ public class Application extends Controller {
      */
     public static Result loginUser() {
         Uzivatel uzivatel=null;
-        uzivatel.vytvorAdmin();
+        vytvorAdmin();
         Form<Uzivatel> form = Form.form(Uzivatel.class).bindFromRequest();
         uzivatel = form.get();
 
-        boolean spravneHeslo = uzivatel.kontrolaPrihlaseni(uzivatel.getJmeno(), uzivatel.getHeslo());
+        boolean spravneHeslo = kontrolaPrihlaseni(uzivatel.getJmeno(), uzivatel.getHeslo());
         if (spravneHeslo) {
             logged = uzivatel.jmeno;
             return GO_HOME();
@@ -136,6 +136,37 @@ public class Application extends Controller {
         computerForm.get().update((Object) id);
 
         return ok(editBook.render(name,knihy ,logged));
+    }
+
+    /**
+     * Kontrola jmena a hesla pri prihlaseni
+     */
+    public static boolean kontrolaPrihlaseni (String jmeno, String heslo){
+        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
+        boolean kontrolaPrihlaseni=false;
+
+        for (int i=0; i< uzivatele.size(); i++){
+            if(uzivatele.get(i).getJmeno()!=null) {
+                if (uzivatele.get(i).getJmeno().equals(jmeno)) {
+                    if (uzivatele.get(i).getHeslo().equals(heslo)) {
+                        kontrolaPrihlaseni = true;
+                    }
+                }
+            }
+        }
+        return kontrolaPrihlaseni;
+
+    }
+    /**
+     * Pokud je databaze uzivatelu prazdna, vytvori se uzivatel admin
+     */
+    public static void vytvorAdmin(){
+        List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
+        UzivatelDAOImpl dao = new UzivatelDAOImpl();
+        if(uzivatele.size()==0){
+            Uzivatel admin = new Uzivatel("admin","admin");
+            dao.create(admin);
+        }
     }
 
 }

@@ -1,36 +1,35 @@
 package DAO.Impl;
 
-import DAO.UzivatelDAO;
-
-import models.Uzivatel;
+import DAO.VypujckaDAO;
+import models.Vypujcka;
 import play.db.jpa.JPA;
 import play.db.jpa.Transactional;
 
 /**
- * Created by Kuba on 10.12.2014.
+ * Created by jaraskala on 18.12.14.
  */
-public class UzivatelDAOImpl implements UzivatelDAO {
+public class VypujckaDAOImpl implements VypujckaDAO{
 
     @Override
     @Transactional
-    public int create(Uzivatel uzivatel) {
-        if (uzivatel!=null) uzivatel.save();
+    public int create(Vypujcka vypujcka) {
+        if (vypujcka!=null) vypujcka.save();
         else return -1;
-        return uzivatel.getId();
+        return vypujcka.getId();
     }
 
     @Override
     @Transactional
-    public Uzivatel read(int id) {
-        Uzivatel uzivatel = JPA.em().find(Uzivatel.class, id);
-        return uzivatel;
+    public Vypujcka read(int id) {
+        Vypujcka vypujcka = JPA.em().find(Vypujcka.class, id);
+        return vypujcka;
     }
 
     @Override
     @Transactional
-    public boolean update(Uzivatel uzivatel) {
+    public boolean update(Vypujcka vypujcka) {
         try{
-            JPA.em().persist(uzivatel);
+            JPA.em().persist(vypujcka);
             return true;
         }catch(Exception e){
             System.out.println("Chyba v update.");
@@ -40,14 +39,13 @@ public class UzivatelDAOImpl implements UzivatelDAO {
 
     @Override
     @Transactional
-    public boolean delete(Uzivatel uzivatel) {
+    public boolean delete(Vypujcka vypujcka) {
         try{
-            JPA.em().remove(uzivatel);
+            JPA.em().remove(vypujcka);
             return true;
         }catch(Exception e){
             System.out.println("Chyba v delete.");
             return false;
         }
     }
-
 }

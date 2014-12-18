@@ -1,4 +1,4 @@
-@(title: String, logged:String)
+@(title: String, logged:String , message: String)
 
 @main(title,logged) {
   @if(logged == "admin"){
@@ -6,6 +6,9 @@
 
   <html>
     <body>
+      @if(message!=null){
+        <h3>@message</h3>
+      }
       <form action="@routes.Application.addUser()" method="post" class="basic-form">
         <br>
         <h1>Přidání Uživatele
