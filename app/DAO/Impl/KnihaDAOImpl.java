@@ -14,8 +14,8 @@ public class KnihaDAOImpl implements KnihaDAO {
     @Override
     @Transactional
     public int create(Kniha kniha) {
-        if (kniha != null) kniha.save();
-        else return -1;
+        if (kniha == null) return -1;
+        else kniha.save();
         return kniha.getId();
     }
 

@@ -7,13 +7,13 @@ import models.Vypujcka;
  */
 public interface VypujckaDAO {
 
-    public int create(Vypujcka vypujcka);
+    int create(Vypujcka vypujcka);
 
-    public Vypujcka read(int id);
+    Vypujcka read(int id);
 
-    public boolean update(Vypujcka vypujcka);
+    boolean update(Vypujcka vypujcka);
 
-    public boolean delete(Vypujcka vypujcka);
+    boolean delete(Vypujcka vypujcka);
 
 
 }

@@ -23,9 +23,6 @@ public class Uzivatel extends Model {
         this.heslo = heslo;
     }
 
-    public Uzivatel() {
-    }
-
     public int getId() {
         return id;
     }

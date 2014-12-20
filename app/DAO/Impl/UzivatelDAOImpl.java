@@ -14,16 +14,15 @@ public class UzivatelDAOImpl implements UzivatelDAO {
     @Override
     @Transactional
     public int create(Uzivatel uzivatel) {
-        if (uzivatel!=null) uzivatel.save();
-        else return -1;
+        if (uzivatel==null) return -1;
+        else uzivatel.save();
         return uzivatel.getId();
     }
 
     @Override
     @Transactional
     public Uzivatel read(int id) {
-        Uzivatel uzivatel = JPA.em().find(Uzivatel.class, id);
-        return uzivatel;
+        return JPA.em().find(Uzivatel.class, id);
     }
 
     @Override

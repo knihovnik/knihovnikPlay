@@ -13,16 +13,15 @@ public class VypujckaDAOImpl implements VypujckaDAO{
     @Override
     @Transactional
     public int create(Vypujcka vypujcka) {
-        if (vypujcka!=null) vypujcka.save();
-        else return -1;
+        if (vypujcka==null) return -1;
+        else vypujcka.save();
         return vypujcka.getId();
     }
 
     @Override
     @Transactional
     public Vypujcka read(int id) {
-        Vypujcka vypujcka = JPA.em().find(Vypujcka.class, id);
-        return vypujcka;
+        return JPA.em().find(Vypujcka.class, id);
     }
 
     @Override

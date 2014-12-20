@@ -26,9 +26,6 @@ public class Vypujcka extends Model {
 
     public Date datumVraceni;
 
-    public Vypujcka() {
-    }
-
     public Vypujcka(Kniha kniha, Uzivatel uzivatel, Date datumVypujceni, Date datumVraceni) {
         this.kniha = kniha;
         this.uzivatel = uzivatel;

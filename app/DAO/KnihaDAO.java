@@ -8,12 +8,12 @@ import models.Kniha;
  */
 public interface KnihaDAO {
 
-    public int create(Kniha kniha);
+    int create(Kniha kniha);
 
-    public Kniha read(int id);
+    Kniha read(int id);
 
-    public boolean update(Kniha kniha);
+    boolean update(Kniha kniha);
 
-    public boolean delete(Kniha kniha);
+    boolean delete(Kniha kniha);
 
 }

@@ -163,12 +163,10 @@ public class Application extends Controller {
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
         boolean kontrolaPrihlaseni=false;
 
-        for (int i=0; i< uzivatele.size(); i++){
-            if(uzivatele.get(i).getJmeno()!=null) {
-                if (uzivatele.get(i).getJmeno().equals(jmeno)) {
-                    if (uzivatele.get(i).getHeslo().equals(heslo)) {
-                        kontrolaPrihlaseni = true;
-                    }
+        for (int i = 0; i < uzivatele.size(); i++) {
+            if (uzivatele.get(i).getJmeno() != null) {
+                if (uzivatele.get(i).getJmeno().equals(jmeno) && uzivatele.get(i).getHeslo().equals(heslo)) {
+                    kontrolaPrihlaseni = true;
                 }
             }
         }
@@ -181,7 +179,7 @@ public class Application extends Controller {
     public static void vytvorAdmin(){
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
         UzivatelDAOImpl dao = new UzivatelDAOImpl();
-        if(uzivatele.size()==0){
+        if(uzivatele.isEmpty()){
             Uzivatel admin = new Uzivatel("admin","admin");
             dao.create(admin);
         }
@@ -196,10 +194,10 @@ public class Application extends Controller {
     public static boolean kontrolaPridaniUzivatele(String jmeno, String heslo){
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
 
-        if(jmeno.equalsIgnoreCase("")){return false;}
-        if(heslo.equalsIgnoreCase("")){return false;}
+        if("".equalsIgnoreCase(jmeno)){return false;}
+        if("".equalsIgnoreCase(heslo)){return false;}
         for(int i=0; i< uzivatele.size();i++){
-            if(uzivatele.get(i).getJmeno().equalsIgnoreCase(jmeno)){
+            if(jmeno.equalsIgnoreCase(uzivatele.get(i).getJmeno())){
                 return false;
             }
 
