@@ -66,12 +66,4 @@ public class Kniha extends Model {
         this.nakladatelstvi = nakladatelstvi;
     }
 
-    /**
-     * Nalezne knihu
-    */
-    public static Finder<String,Kniha> find = new Finder<String,Kniha>(String.class, Kniha.class);
-
-
-
-
 }

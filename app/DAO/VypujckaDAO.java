@@ -2,7 +2,6 @@ package DAO;
 
 import models.Vypujcka;
 
-
 /**
  * Created by Kuba on 10.12.2014.
  */
@@ -15,5 +14,6 @@ public interface VypujckaDAO {
     public boolean update(Vypujcka vypujcka);
 
     public boolean delete(Vypujcka vypujcka);
+
 
 }

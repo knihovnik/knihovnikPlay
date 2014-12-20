@@ -1,12 +1,14 @@
 package controllers;
 
 import DAO.Impl.KnihaDAOImpl;
-import models.*;
+
+import models.Kniha;
+import models.Uzivatel;
 import play.data.Form;
 import play.db.ebean.Model;
-import play.mvc.*;
 import DAO.Impl.UzivatelDAOImpl;
-import views.html.*;
+import play.mvc.Controller;
+import play.mvc.Result;
 import views.html.Knihy.editBook;
 import views.html.Knihy.addBook;
 import views.html.Knihy.showBooks;
@@ -14,6 +16,7 @@ import views.html.Uzivatele.login;
 import views.html.Uzivatele.addUser;
 import views.html.Uzivatele.showUsers;
 import views.html.Sprava.manageDatabase;
+import views.html.index;
 
 import java.util.List;
 
@@ -123,9 +126,9 @@ public class Application extends Controller {
      * Smaze vsechny knihy z databaze.
      */
     public static Result deleteAll() {
-        int databaseSize = Kniha.find.all().size();
+        int databaseSize = KnihaDAOImpl.find.all().size();
         for (int i = 1; i < databaseSize + 1; i++) {
-            Kniha.find.all().get(0).delete();
+            KnihaDAOImpl.find.all().get(0).delete();
         }
         return GO_HOME();
     }

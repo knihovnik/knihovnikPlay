@@ -12,7 +12,6 @@ import javax.persistence.Id;
 public class Uzivatel extends Model {
 
     @Id
-
     public int id;
 
     public String jmeno;
@@ -21,7 +20,7 @@ public class Uzivatel extends Model {
 
     public Uzivatel(String jmeno, String heslo) {
         this.jmeno = jmeno;
-        this.heslo=heslo;
+        this.heslo = heslo;
     }
 
     public Uzivatel() {
@@ -50,10 +49,6 @@ public class Uzivatel extends Model {
     public void setHeslo(String heslo) {
         this.heslo = heslo;
     }
-
-
-
-
 
 
 }

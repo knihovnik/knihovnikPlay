@@ -3,6 +3,7 @@ package DAO.Impl;
 import DAO.KnihaDAO;
 import com.avaje.ebean.annotation.Transactional;
 import models.Kniha;
+import play.db.ebean.Model;
 import play.db.jpa.JPA;
 
 /**
@@ -13,7 +14,7 @@ public class KnihaDAOImpl implements KnihaDAO {
     @Override
     @Transactional
     public int create(Kniha kniha) {
-        if (kniha!=null) kniha.save();
+        if (kniha != null) kniha.save();
         else return -1;
         return kniha.getId();
     }
@@ -21,17 +22,16 @@ public class KnihaDAOImpl implements KnihaDAO {
     @Override
     @Transactional
     public Kniha read(int id) {
-        Kniha kniha = JPA.em().find(Kniha.class, id);
-        return kniha;
+        return JPA.em().find(Kniha.class, id);
     }
 
     @Override
     @Transactional
     public boolean update(Kniha kniha) {
-        try{
+        try {
             JPA.em().persist(kniha);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Chyba v update.");
             return false;
         }
@@ -40,13 +40,18 @@ public class KnihaDAOImpl implements KnihaDAO {
     @Override
     @Transactional
     public boolean delete(Kniha kniha) {
-        try{
+        try {
             JPA.em().remove(kniha);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Chyba v delete.");
             return false;
         }
     }
+
+    /**
+     * Nalezne knihu
+     */
+    public static Model.Finder<String, Kniha> find = new Model.Finder<>(String.class, Kniha.class);
 
 }
