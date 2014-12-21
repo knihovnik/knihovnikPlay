@@ -24,17 +24,19 @@ public class Application extends Controller {
 
     public static String logged = null;
 
-    public static Result index() {return ok(index.render("Vítejte v systému Knihovník", logged));}
+    public static Result index() {return ok(index.render("Vitejte v systemu Knihovnik", logged));}
 
     public static Result newBook() {return ok(addBook.render("Nova kniha", logged, null));}
 
-    public static Result manageDatabase() {return ok(manageDatabase.render("Správa databáze", logged));}
+    public static Result manageDatabase() {return ok(manageDatabase.render("Sprava databaze", logged));}
 
     public static Result newUser() {return ok(addUser.render("Novy uzivatel", logged,null));}
 
     private static Result GO_HOME() {return redirect(routes.Application.index());}
 
-    public static Result editBook(String id) {List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();return ok(editBook.render(id,knihy, logged,null));}
+    public static Result editBook(String id) {
+        List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
+        return ok(editBook.render(id,knihy, logged,null));}
 
     /**
      * Prida knihu do databaze.
@@ -49,7 +51,7 @@ public class Application extends Controller {
             return newBook();
         }
         else{
-            return ok(addBook.render("Nova kniha", logged, "Všechna pole musí být vyplněná"));
+            return ok(addBook.render("Nova kniha", logged, "Vsechna pole musi byt vyplnena"));
         }
 
     }
@@ -66,7 +68,7 @@ public class Application extends Controller {
      * Prihlaseni do systemu.
      */
     public static Result login() {
-        return ok(login.render("Prihlasit", logged, "Přihlaš se:"));
+        return ok(login.render("Prihlasit", logged, "Prihlas se:"));
     }
 
     /**
@@ -74,7 +76,7 @@ public class Application extends Controller {
      */
     public static Result logout() {
         logged = null;
-        return ok(login.render("Prihlasit", logged, "Přihlaš se:"));
+        return ok(login.render("Prihlasit", logged, "Prihlas se:"));
     }
 
     /**
@@ -90,7 +92,7 @@ public class Application extends Controller {
             dao.create(uzivatel);
             return newUser();
         }else{
-            return ok(addUser.render("Novy uzivatel", logged,"Jméno je prázdné, nebo již existuje"));
+            return ok(addUser.render("Novy uzivatel", logged,"Jmeno/heslo je prazdne, nebo jiz uzivatel existuje"));
         }
 
     }
@@ -100,7 +102,7 @@ public class Application extends Controller {
      */
     public static Result getUsers() {
         List<Uzivatel> uzivatele = new Model.Finder(String.class, Uzivatel.class).all();
-        return ok(showUsers.render("Seznam uživatelů", uzivatele, logged));
+        return ok(showUsers.render("Seznam uzivatelu", uzivatele, logged));
     }
 
 
@@ -118,7 +120,7 @@ public class Application extends Controller {
             logged = uzivatel.jmeno;
             return GO_HOME();
         } else {
-            return ok(login.render("Prihlasit", logged, "Špatně zadané jméno nebo heslo, zkuz to znovu:"));
+            return ok(login.render("Prihlasit", logged, "Spatne zadane jmeno nebo heslo, zkuz to znovu:"));
         }
     }
 
@@ -158,7 +160,7 @@ public class Application extends Controller {
 
             return ok(editBook.render(name,knihy ,logged, null));
         }else{
-            return ok(editBook.render(name,knihy ,logged, "Všechna pole musí být vyplněná"));
+            return ok(editBook.render(name,knihy ,logged, "Vsechna pole musi byt vyplnena"));
         }
 
     }
@@ -205,6 +207,7 @@ public class Application extends Controller {
 
         if("".equalsIgnoreCase(jmeno)){return false;}
         if("".equalsIgnoreCase(heslo)){return false;}
+        System.out.println(uzivatele.size());
         for(int i=0; i< uzivatele.size();i++){
             if(jmeno.equalsIgnoreCase(uzivatele.get(i).getJmeno())){
                 return false;
@@ -214,6 +217,11 @@ public class Application extends Controller {
         return true;
     }
 
+    /**
+     * Kontrola, jeslti je formular vyplnen spravnymi daty
+     * @param kniha kniha ktera je vytvarena z formulare
+     * @return true, kdyz je vse vporadku jinak false
+     */
     public static boolean kontrolaPridaniKnihy(Kniha kniha){
         if(kniha.getAutor().equalsIgnoreCase("") || kniha.getNakladatelstvi().equalsIgnoreCase("") || kniha.getNazev().equalsIgnoreCase("")
                 || kniha.getRokVydani().equalsIgnoreCase("")){
