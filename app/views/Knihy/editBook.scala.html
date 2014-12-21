@@ -1,4 +1,4 @@
-@(id: String, books: List[Kniha], logged: String)
+@(id: String, books: List[Kniha], logged: String, message: String)
 
     @main("Knihovnický infromační portál", logged) {
 
@@ -12,6 +12,9 @@
                 }else{
                         <h1>Úprava knihy s názvem: @id</h1>
                     }
+                @if(message!=null){
+                    <h3>@message</h3>
+                }
                 @helper.form(action = routes.Application.updateBook(id)) {
                     <br>
 

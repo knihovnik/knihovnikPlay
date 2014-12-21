@@ -34,7 +34,7 @@ public class Application extends Controller {
 
     private static Result GO_HOME() {return redirect(routes.Application.index());}
 
-    public static Result editBook(String id) {List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();return ok(editBook.render(id,knihy, logged));}
+    public static Result editBook(String id) {List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();return ok(editBook.render(id,knihy, logged,null));}
 
     /**
      * Prida knihu do databaze.
@@ -142,16 +142,25 @@ public class Application extends Controller {
     public static Result updateBook(String name) {
         List<Kniha> knihy = new Model.Finder(String.class, Kniha.class).all();
         Form<Kniha> computerForm = Form.form(Kniha.class).bindFromRequest();
+        Kniha kniha = computerForm.get();
 
-        int id=0;
-        for(int i = 0; i < knihy.size();i++){
-            if(knihy.get(i).getNazev().equals(name)){
-                id=knihy.get(i).getId();
+
+        if(kontrolaPridaniKnihy(kniha)){
+            int id=0;
+            for(int i = 0; i < knihy.size();i++){
+                if(knihy.get(i).getNazev().equals(name)){
+                    id=knihy.get(i).getId();
+                }
             }
-        }
-        computerForm.get().update((Object) id);
 
-        return ok(editBook.render(name,knihy ,logged));
+
+            computerForm.get().update((Object) id);
+
+            return ok(editBook.render(name,knihy ,logged, null));
+        }else{
+            return ok(editBook.render(name,knihy ,logged, "Všechna pole musí být vyplněná"));
+        }
+
     }
     /**
      * Kontrola jmena a hesla pri prihlaseni
